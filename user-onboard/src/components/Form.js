@@ -1,14 +1,20 @@
 export default function UserForm(props) {
   const { values, update, submit } = props;
 
-  const onChange = (evt) => {};
+  const onChange = (evt) => {
+    const { name, value } = evt.target;
+    update(name, value);
+  };
 
-  const onSubmit = (evt) => {};
+  const onSubmit = (evt) => {
+    evt.preventDefault();
+    submit();
+  };
   return (
     <div className="container">
       <h1>Simple Form</h1>
 
-      <form>
+      <form onSubmit={onSubmit}>
         <label>
           Name
           <input
@@ -35,7 +41,7 @@ export default function UserForm(props) {
             type="password"
             name="password"
             placeholder="password"
-            onChange={onchange}
+            onChange={onChange}
             value={values.password}
           />
         </label>
